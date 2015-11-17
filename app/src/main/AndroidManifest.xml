@@ -18,12 +18,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecondActivity">
+        <activity android:name=".SecondActivity" android:label="@string/title_activity_second" >>
             <intent-filter>
                 <!-- my custom action to call the second activity (this) -->
-                <action android:name="gr.hua.android.assignment1.RSSpresentation">
+                <action android:name="gr.hua.android.assignment1.RSSpresentation"/>
+                <category android:name="android.intent.category.DEFAULT"/>
 
-                </action>
             </intent-filter>
         </activity>
     </application>
