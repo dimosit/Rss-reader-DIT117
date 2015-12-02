@@ -34,7 +34,7 @@ public class CustomAdapter extends ArrayAdapter<String>{
     /*private view holder class*/
     private class ViewHolder {
         TextView txtTitleView;
-        TextView txtDescView;
+
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -49,7 +49,7 @@ public class CustomAdapter extends ArrayAdapter<String>{
         } else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
+        //
         viewHolder.txtTitleView.setText(rssDatas.get(position).toString());
 
 

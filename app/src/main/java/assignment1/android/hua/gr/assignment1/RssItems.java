@@ -5,10 +5,12 @@ import java.io.Serializable;
 /**
  * Created by d1 on 1/12/2015.
  */
+
+//class fro rss items
 public class RssItems implements Serializable {
     String postTitle ;
     String postDescription;
-    String postDate;
+
 
     public String getPostTitle() {
         return postTitle;
@@ -26,11 +28,5 @@ public class RssItems implements Serializable {
         this.postDescription = postDescription;
     }
 
-    public String getPostDate() {
-        return postDate;
-    }
 
-    public void setPostDate(String postDate) {
-        this.postDate = postDate;
-    }
 }

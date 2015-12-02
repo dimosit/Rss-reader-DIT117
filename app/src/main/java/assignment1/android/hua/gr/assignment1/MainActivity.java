@@ -35,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
     // Connection detector class
     ConnectionDetector cd;
 
+    //enumeration for  xml tags
     private enum RSSXMLTag {
         TITLE, IGNORETAG, DESCRIPTION;
     }
@@ -75,7 +76,7 @@ public class MainActivity extends ActionBarActivity {
                 // Internet connection is not present
                 if(isInternetPresent == false){
 
-                    // Ask user to connect to Internet error message
+                    // Ask user to connect to Internet, error message
                     Toast.makeText(context, okMessage, erroDuration).show();
                 }
 
@@ -119,7 +120,7 @@ public class MainActivity extends ActionBarActivity {
         /** application context. */
         private Context context;
 
-
+        //con for dialog
         public XmlParserTask(MainActivity activity) {
             this.context = activity;
             dialog = new ProgressDialog(context);

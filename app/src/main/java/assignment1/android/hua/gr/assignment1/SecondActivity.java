@@ -42,7 +42,7 @@ public class SecondActivity extends ActionBarActivity {
         }
 
 
-        //use the default arraydapter
+        //use the default array adapter
 //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, muTitle);
 
         //use my custom adapter to display titles in the listView
@@ -51,8 +51,9 @@ public class SecondActivity extends ActionBarActivity {
         // Set list adapter for the ListView
         rssListView.setAdapter(adapter);
 
-        //Show the discription  in toast
 
+
+        //on title click display a toast with description
         rssListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
