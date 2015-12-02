@@ -253,10 +253,11 @@ public class MainActivity extends ActionBarActivity {
             i.setAction("gr.hua.android.assignment1.RSSpresentation");
             i.putExtras(bundle);
 
-            //start SecondActivity
-            startActivity(i);
             //end dialog
             dialog.dismiss();
+            //start SecondActivity
+            startActivity(i);
+
         }
     }
 
