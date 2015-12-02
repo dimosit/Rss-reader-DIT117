@@ -2,6 +2,7 @@ package assignment1.android.hua.gr.assignment1;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -58,18 +59,13 @@ public class SecondActivity extends ActionBarActivity {
 
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-
-                Toast.makeText(getApplicationContext(), (CharSequence) mDescriptio.get(arg2), Toast.LENGTH_LONG).show();
-
-
+                //show description in toast without hmtl  tags
+                Toast.makeText(getApplicationContext(), (CharSequence) Html.fromHtml(mDescriptio.get(arg2) ), Toast.LENGTH_LONG).show();
 
             }
         });
-//
+
     }
-
-
-
 
 }
 
