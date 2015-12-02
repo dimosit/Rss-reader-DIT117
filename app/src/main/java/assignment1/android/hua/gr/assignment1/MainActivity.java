@@ -1,6 +1,8 @@
 package assignment1.android.hua.gr.assignment1;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ParseException;
@@ -32,6 +34,7 @@ public class MainActivity extends ActionBarActivity {
     Boolean isInternetPresent;
     // Connection detector class
     ConnectionDetector cd;
+
     private enum RSSXMLTag {
         TITLE, IGNORETAG, DESCRIPTION;
     }
@@ -63,21 +66,24 @@ public class MainActivity extends ActionBarActivity {
                 // get Internet status
                 isInternetPresent = cd.isConnectingToInternet();
 
-                // check for Internet status
+                // Internet Connection is Present
                 if (isInternetPresent == true ) {
-                    // Internet Connection is Present
-                    // make HTTP requests
+
+                    //show ok message
                     Toast.makeText(context, errorMessage, okDuration).show();
                 }
+                // Internet connection is not present
                 if(isInternetPresent == false){
-                    // Internet connection is not present
-                    // Ask user to connect to Internet
+
+                    // Ask user to connect to Internet error message
                     Toast.makeText(context, okMessage, erroDuration).show();
                 }
-                //save user url
+
+                //get url from editText
                 String url = enterUrl.getText().toString();
-                XmlParserTask mytask = new XmlParserTask();
-                //execute background task
+
+                XmlParserTask mytask = new XmlParserTask(MainActivity.this);
+                //execute background task(download and parse xml)
                 mytask.execute(url);
 
             }
@@ -108,8 +114,24 @@ public class MainActivity extends ActionBarActivity {
 
     //create a inner class to get and parser xml using asyncTask(threads!)
     public class XmlParserTask extends AsyncTask<String , Void, ArrayList<RssItems> >{
+        private ProgressDialog dialog;
         private RSSXMLTag currentTag;
+        /** application context. */
+        private Context context;
 
+
+        public XmlParserTask(MainActivity activity) {
+            this.context = activity;
+            dialog = new ProgressDialog(context);
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Loading please wait...!");
+            //show dialog in main activity
+            this.dialog.show();
+        }
 
         @Override
         protected ArrayList<RssItems> doInBackground(String... arg0){
@@ -232,6 +254,8 @@ public class MainActivity extends ActionBarActivity {
 
             //start SecondActivity
             startActivity(i);
+            //end dialog
+            dialog.dismiss();
         }
     }
 
