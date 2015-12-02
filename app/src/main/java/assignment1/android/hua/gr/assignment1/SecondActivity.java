@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+//second activity class
 public class SecondActivity extends ActionBarActivity {
 
     @Override

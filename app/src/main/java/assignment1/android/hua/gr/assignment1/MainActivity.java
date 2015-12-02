@@ -1,6 +1,5 @@
 package assignment1.android.hua.gr.assignment1;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -29,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+//main activity  class
 public class MainActivity extends ActionBarActivity {
     // flag for Internet connection status
     Boolean isInternetPresent;
@@ -136,12 +136,14 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected ArrayList<RssItems> doInBackground(String... arg0){
-            // TODO Auto-generated method stub
+            //
             String urlStr = arg0[0];
             InputStream is = null;
             ArrayList<RssItems> postDataList = new ArrayList<RssItems>();
+
             try {
                 URL url = new URL(urlStr);
+                //connect to the url
                 HttpURLConnection connection = (HttpURLConnection) url
                         .openConnection();
                 connection.setReadTimeout(10 * 1000);
@@ -149,14 +151,18 @@ public class MainActivity extends ActionBarActivity {
                 connection.setRequestMethod("GET");
                 connection.setDoInput(true);
                 connection.connect();
+
                 int response = connection.getResponseCode();
+                //debug
                 Log.d("debug", "The response is: " + response);
                 is = connection.getInputStream();
 
                 // parse xml
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                //set suppport for xml namespaces
                 factory.setNamespaceAware(true);
                 XmlPullParser xpp = factory.newPullParser();
+                //insert stream data to parser
                 xpp.setInput(is, null);
 
                 //Returns the type of the current event (START_TAG, END_TAG, TEXT, etc.) D.A
@@ -205,8 +211,6 @@ public class MainActivity extends ActionBarActivity {
                                         pdData.setPostDescription(content);
 
                                     }
-                                    //repeated elements bug!!!
-                                    //postDataList.add(pdData);
                                     //debug
                                     System.out.println("--------------------------");
                                     System.out.println("--------------------------");
@@ -235,7 +239,7 @@ public class MainActivity extends ActionBarActivity {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
+            //return parset data
             return postDataList;
         }
 
@@ -253,7 +257,7 @@ public class MainActivity extends ActionBarActivity {
             i.setAction("gr.hua.android.assignment1.RSSpresentation");
             i.putExtras(bundle);
 
-            //end dialog
+            //end of loading  dialog
             dialog.dismiss();
             //start SecondActivity
             startActivity(i);
