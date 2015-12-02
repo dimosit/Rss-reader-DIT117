@@ -61,7 +61,7 @@ public class SecondActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 //show description in toast without hmtl  tags
-                Toast.makeText(getApplicationContext(), (CharSequence) Html.fromHtml(mDescriptio.get(arg2) ), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), (CharSequence) Html.fromHtml(mDescriptio.get(arg2) ), Toast.LENGTH_SHORT).show();
 
             }
         });
