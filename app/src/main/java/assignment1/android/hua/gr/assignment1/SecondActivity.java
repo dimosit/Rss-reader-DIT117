@@ -1,13 +1,11 @@
 package assignment1.android.hua.gr.assignment1;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -45,16 +43,13 @@ public class SecondActivity extends ActionBarActivity {
             System.out.println();
         }
 
-
         //use the default array adapter
 //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, muTitle);
 
         //use my custom adapter to display titles in the listView
         CustomAdapter adapter =  new CustomAdapter(this, R.layout.listview_item, muTitle);
-
         // Set list adapter for the ListView
         rssListView.setAdapter(adapter);
-
 
 
         //on title click display a toast with description
