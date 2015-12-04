@@ -47,11 +47,26 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         // creating connection detector class instance
         cd = new ConnectionDetector(getApplicationContext());
-        AlertDialog  aler = null;
 
         final EditText enterUrl = (EditText) findViewById(R.id.editTextUrl);
         Button showButton  = (Button) findViewById(R.id.buttonShow);
+        Button secondButton = (Button) findViewById((R.id.buttonSecond));
 
+        //start second app on button click
+        secondButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //get url from editText
+                String url = enterUrl.getText().toString();
+                XmlParserTask mytask2 = new XmlParserTask(MainActivity.this);
+                //execute background task(download and parse xml)
+                mytask2.execute(url);
+
+            }
+        });
+        /*
         showButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +104,8 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
+
+        */
     }
 
     @Override
@@ -252,6 +269,20 @@ public class MainActivity extends ActionBarActivity {
             //put data to bundle
             bundle.putSerializable("rssBundel", (Serializable) rssObjects);
 
+
+
+            //intent to start second app
+            Intent intentForSecondApp = new Intent();
+
+            intentForSecondApp.setAction("gr.hua.asinlab.Myaction.S2");
+
+            intentForSecondApp.putExtras(bundle);
+
+            startActivity(intentForSecondApp);
+
+
+/*
+
             Intent i  = new Intent();
             //start the second activity with custom action
             i.setAction("gr.hua.android.assignment1.RSSpresentation");
@@ -261,6 +292,8 @@ public class MainActivity extends ActionBarActivity {
             dialog.dismiss();
             //start SecondActivity
             startActivity(i);
+            */
+
 
         }
     }
