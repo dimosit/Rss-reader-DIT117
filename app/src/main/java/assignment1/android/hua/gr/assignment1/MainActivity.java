@@ -57,8 +57,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 //toast parameters
                 Context context = getApplicationContext();
-                CharSequence errorMessage = "ERROR: No internet connection detected! Please connect to " +
-                        "internet and connect to internet and reopen the app";
+                CharSequence errorMessage = "ERROR: No internet connection detected!";
                 CharSequence okMessage = "You are connected to internet";
                 int okDuration = Toast.LENGTH_SHORT;
                 int erroDuration = Toast.LENGTH_LONG;
@@ -67,25 +66,27 @@ public class MainActivity extends ActionBarActivity {
                 // get Internet status
                 isInternetPresent = cd.isConnectingToInternet();
 
-                // Internet Connection is Present
-                if (isInternetPresent == true ) {
+                //  Internet connection is not present
+                if (isInternetPresent == false ) {
 
-                    //show ok message
+                    //show error  message
                     Toast.makeText(context, errorMessage, okDuration).show();
                 }
-                // Internet connection is not present
-                if(isInternetPresent == false){
+                // Internet Connection is Present
+                if(isInternetPresent == true){
 
-                    // Ask user to connect to Internet, error message
+                    // error message
                     Toast.makeText(context, okMessage, erroDuration).show();
+
+                    //get url from editText
+                    String url = enterUrl.getText().toString();
+
+                    XmlParserTask mytask = new XmlParserTask(MainActivity.this);
+                    //execute background task(download and parse xml)
+                    mytask.execute(url);
                 }
 
-                //get url from editText
-                String url = enterUrl.getText().toString();
 
-                XmlParserTask mytask = new XmlParserTask(MainActivity.this);
-                //execute background task(download and parse xml)
-                mytask.execute(url);
 
             }
         });
