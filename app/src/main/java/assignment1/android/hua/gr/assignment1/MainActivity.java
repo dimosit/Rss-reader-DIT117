@@ -1,6 +1,5 @@
 package assignment1.android.hua.gr.assignment1;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
